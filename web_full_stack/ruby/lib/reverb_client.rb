@@ -13,8 +13,14 @@ class ReverbClient
     @base_uri = base_uri
   end
 
-  def listings(per_page: 10)
-    get('/listings/all', {per_page: per_page})['listings']
+  def listings(currency:"USD", region:"US_CON", category_uuid:nil, per_page: 10)
+    HEADERS["X-Display-Currency"] = currency
+    HEADERS["X-Shipping-Region"] = region
+    params={per_page: per_page}
+    if category_uuid
+        params["category_uuid"] = category_uuid
+    end
+    get('/listings/all', params)['listings']
   end
 
   def categories

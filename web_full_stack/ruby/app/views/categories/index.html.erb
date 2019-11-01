@@ -13,7 +13,7 @@
   <ul class="list-group">
     <% @categories.each do |category| %>
       <li class="list-group-item">
-        <%= category['full_name'] %>
+        <%= link_to category['full_name'], listings_path({"category_uuid":category['uuid']}) %>
       </li>
     <% end %>
   </ul>

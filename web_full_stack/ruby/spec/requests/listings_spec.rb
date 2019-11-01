@@ -9,7 +9,10 @@ RSpec.describe "listings page", :type => :request do
           {
             '_links' => { 'thumbnail' => { 'href' => 'https://image.com' } }
           }
-        ]
+        ],
+        'price' => {
+            'display' => '€328.15'
+        }
       }
     ]
   end
@@ -29,7 +32,7 @@ RSpec.describe "listings page", :type => :request do
     assert_select "ul.list-group" do
       assert_select "li.list-group-item", 1 do
         assert_select "img[src=?]", 'https://image.com'
-        assert_select "h2", 'Some Cool Instrument'
+        assert_select "h2", 'Some Cool Instrument (€328.15)'
       end
     end
   end

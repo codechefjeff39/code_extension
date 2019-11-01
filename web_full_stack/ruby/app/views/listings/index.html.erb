@@ -6,7 +6,7 @@
             <%= image_tag(listing['photos'].first['_links']['thumbnail']['href'] )%>
         </div>
         <h2 class="p-2">
-            <%= listing['title'] %>
+            <%= listing['title'] %> (<%= listing['price']['display'] %>)
         </h2>
       </li>
     <% end %>
