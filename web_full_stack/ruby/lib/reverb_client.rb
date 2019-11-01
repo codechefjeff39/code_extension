@@ -13,12 +13,14 @@ class ReverbClient
     @base_uri = base_uri
   end
 
-  def listings(per_page: 10)
-    get('/listings/all', {per_page: per_page})['listings']
+  def listings(page, per_page: 10)
+    listings_response = get('/listings/all', {per_page: per_page, page: page})
+    return listings_response['listings'], listings_response['current_page'], listings_response['total_pages']
   end
 
-  def filter_listings(category_uuid, per_page: 10)
-    get('/listings/all', {category_uuid: category_uuid, per_page: per_page})['listings']
+  def filter_listings(category_uuid, page, per_page: 10)
+    listings_response = get('/listings/all', {category_uuid: category_uuid, per_page: per_page, page: page})
+    return listings_response['listings'], listings_response['current_page'], listings_response['total_pages']
   end
 
   def categories

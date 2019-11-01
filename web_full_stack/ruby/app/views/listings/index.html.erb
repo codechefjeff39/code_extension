@@ -19,6 +19,26 @@
 <% end %>
 
 <% if @listings.present? %>
+
+  <% if @current_page > 1 %>
+    <%= form_tag(listings_path, method: :get) do -%>
+      <div class="form-group">
+        <input name="category" type="hidden" value="<%= @selected_category %>"/>
+        <input name="page" type="hidden" value="<%= @current_page - 1 %>"/>
+        <button type="submit" class="btn btn-primary">Previous Page</button>
+      </div>
+    <% end %>
+  <% end %>
+  <% if @current_page < @total_pages %>
+    <%= form_tag(listings_path, method: :get) do -%>
+      <div class="form-group">
+        <input name="category" type="hidden" value="<%= @selected_category %>"/>
+        <input name="page" type="hidden" value="<%= @current_page + 1 %>"/>
+        <button type="submit" class="btn btn-primary">Next Page</button>
+      </div>
+    <% end %>
+  <% end %>
+
   <h2>Listings</h2>
   <ul class="list-group">
     <% @listings.each do |listing| %>
