@@ -17,6 +17,10 @@ class ReverbClient
     get('/listings/all', {per_page: per_page})['listings']
   end
 
+  def filter_listings(category_uuid, per_page: 10)
+    get('/listings/all', {category_uuid: category_uuid, per_page: per_page})['listings']
+  end
+
   def categories
     get('/categories/flat')['categories']
   end
